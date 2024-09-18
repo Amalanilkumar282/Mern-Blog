@@ -22,14 +22,16 @@ export default function Header() {
       {username && (
         <>
         <Link to="/create">Create new post</Link>
+        <a>Logout</a>
         </>
       )}
       {!username && (
         <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
         </>
       )}
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
+    
     </nav>
     </header>
     );
