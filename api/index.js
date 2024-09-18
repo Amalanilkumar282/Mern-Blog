@@ -35,8 +35,10 @@ const salt=bcrypt.genSaltSync(10);
  });
 
 
-app.get('/register',(req,res)=>{
-    res.json('test ok');
-});
+app.post('/login',async (req,res)=>{
+    const {username,password}=req.body;
+    const userDoc=await User.findOne({username});
+    res.json(userDoc);
+})
 
 app.listen(4000);
