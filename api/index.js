@@ -19,8 +19,8 @@ const app=express();
 
  app.post('/register',async (req,res) => {
      const {username,password}=req.body;
-     console.log(username);
-     console.log(password);
+     //console.log(username);
+    //console.log(password);
     const userDoc=await User.create({username,password});
      res.json({requestData:{username,password}});
     
