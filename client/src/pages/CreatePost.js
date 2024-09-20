@@ -1,7 +1,13 @@
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+
 export default function CreatePost(){
     return(
-        <div>
-            here you create your new post
-        </div>
+        <form>
+            <input type='title' placeholder={"title"}/>
+            <input type='summary' placeholder={"summary"}/>
+            <input type='file'/>
+            <ReactQuill/>
+        </form>
     )
 }
