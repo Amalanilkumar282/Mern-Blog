@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import { Form } from "react-router-dom";
 
 const modules = {
     toolbar: [
@@ -21,17 +22,35 @@ const formats = [
 export default function CreatePost(){
     const [title,setTitle]=useState('');
     const [summary,setSummary]=useState('');
-    const [Content,setContent]=useState('');
+    const [content,setContent]=useState('');
+    const [files,setFiles]=useState('');
+    function createNewPost(ev){
+        const data= new FormData();
+        data.set('title',title);
+        data.set('summary',summary);
+        data.set('content',content);
+        data.set('file',files[0]);
+
+        ev.preventDefault();
+        console.log(files);
+        fetch('http://localhost:4000/post',{
+            method:'POST',
+            body:data,
+        })
+
+    }
    
     return(
-        <form>
+        <form onSubmit={createNewPost}>
             <input type='title' placeholder={"title"} 
             value={title} onChange={ev=>setTitle(ev.target.value)}/>
             <input type='summary' placeholder={"summary"}
             value={summary} onChange={ev=>setSummary(ev.target.value)}/>
-            <input type='file'/>
+            <input type='file' 
+            //value={files}
+            onChange={ev=>setFiles(ev.target.files[0])}/>
             <ReactQuill 
-            value={Content} 
+            value={content} 
             onChange={newValue=>setContent(newValue)}
             modules={modules} formats={formats}/>
             <button style={{marginTop:'5px'}}>Create post</button>
