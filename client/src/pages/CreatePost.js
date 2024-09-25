@@ -34,11 +34,11 @@ export default function CreatePost(){
 
         ev.preventDefault();
         console.log(files);
-        const response=await fetch('http://localhost:4000/post',{
+        await fetch('http://localhost:4000/post',{
             method:'POST',
             body:data,
         });
-        if(response.ok){
+        if(Response.ok){
           setRedirect(true);
 
         }
